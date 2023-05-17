@@ -1,20 +1,20 @@
 <template>
-  <main class="login">
+  <main>
     <section class="forms">
-      <form class="login" @submit.prevent="login">
-        <h2>Login</h2>
+      <form class="register" @submit.prevent="register">
+        <h2>Register</h2>
         <input
           type="email"
           placeholder="Email Address"
-          v-model="login_form.email"
+          v-model="register_form.email"
         />
         <input
           type="password"
           placeholder="Password"
-          v-model="login_form.password"
+          v-model="register_form.password"
         />
-        <input type="submit" value="Login" />
-        <a href="/register">Don't have account register here</a>
+        <input type="submit" value="Register" />
+        <a href="/login">Already have an account login here</a>
       </form>
     </section>
   </main>
@@ -26,18 +26,16 @@ import { useStore } from 'vuex';
 
 export default {
   setup() {
-    const login_form = ref({});
-
+    const register_form = ref({});
     const store = useStore();
 
-    const login = () => {
-      store.dispatch('login', login_form.value);
+    const register = () => {
+      store.dispatch('register', register_form.value);
     };
 
     return {
-      login_form,
-
-      login,
+      register_form,
+      register,
     };
   },
 };
@@ -50,7 +48,7 @@ export default {
 }
 
 form {
-  flex: 1 0%;
+  flex: 1;
   padding: 8rem 1rem 1rem;
 }
 
@@ -98,14 +96,14 @@ input::placeholder {
   color: inherit;
 }
 
-form.login input:not([type='submit']) {
-  color: #2c3e50;
-  border-bottom: 2px solid #2c3e50;
+form.register input:not([type='submit']) {
+  color: #fff;
+  border-bottom: 2px solid #fff;
 }
 
-form.login input[type='submit'] {
-  background-color: rgb(245, 66, 101);
-  color: #fff;
+form.register input[type='submit'] {
+  background-color: #fff;
+  color: rgb(245, 66, 101);
   font-weight: 700;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -115,15 +113,15 @@ form.login input[type='submit'] {
 a {
   text-decoration: none;
   padding: 10px;
-  color: rgb(245, 66, 101);
+  color: #edede9;
   font-weight: 700;
   border-radius: 0.5rem;
 }
 a:hover {
   text-decoration: none;
-  background-color: rgb(245, 66, 101);
+  background-color: #edede9;
   padding: 10px;
-  color: #edede9;
+  color: rgb(245, 66, 101);
   font-weight: 700;
   border-radius: 0.5rem;
 }
